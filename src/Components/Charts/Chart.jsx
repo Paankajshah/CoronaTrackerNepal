@@ -17,7 +17,7 @@ class Chart extends Component{
        data : data
 
     })
-  console.log(this.state.data)
+  console.log("Chart JSX " ,this.state.data)
   }
 
 

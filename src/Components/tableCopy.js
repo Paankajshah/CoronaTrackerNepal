@@ -62,8 +62,8 @@ const rows = [
   ];
 
   const rowData = info ? (<TableBody>{info.map((row) => (
-    <Row key={info.province} row={row} />
-  ))} </TableBody>) : <h1>Loading......</h1>
+    <Row key={row.province} row={row} />
+  ))}</TableBody>) : null
 
   console.log(rows)
         return (
@@ -79,8 +79,6 @@ const rows = [
                   <TableCell align="right">Deaths</TableCell>
                 </TableRow>
               </TableHead>
-              
-                
               {rowData}
             </Table>
           </TableContainer>

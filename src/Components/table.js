@@ -108,8 +108,8 @@ const rows = [
 
 export default function CollapsibleTable() {
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
+    <TableContainer  component={Paper}>
+      <Table xs={12} aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />

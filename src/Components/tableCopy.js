@@ -67,7 +67,7 @@ const rows = [
 
   console.log(rows)
         return (
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{marginTop:'30px'}}>
             <Table aria-label="collapsible table">
               <TableHead>
                 <TableRow>

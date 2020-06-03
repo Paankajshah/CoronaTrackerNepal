@@ -100,7 +100,7 @@ class DistrictTable extends React.Component {
     return (
     <div style={{marginTop:'30px'}}>
       <MUIDataTable
-        title={"ACME Employee list"}
+        title={"District Wise Data"}
         data={data}
         columns={columns}
         options={options}

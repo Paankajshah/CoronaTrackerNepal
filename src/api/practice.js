@@ -1,12 +1,12 @@
-const  axios = require('axios')
+const  axios  =  require('axios')
 
 const url = 'https://nepalcorona.info/api/v1/data/nepal'
 const dailyUrl = 'https://data.nepalcorona.info/api/v1/covid/timeline'
-const districtUrl ='https://data.nepalcorona.info/api/v1/districts'
-const districtIdUrl = 'https://data.nepalcorona.info/api/v1/districts/'
-const perUrl = 'https://data.nepalcorona.info/api/v1/covid'
+const district ='https://data.nepalcorona.info/api/v1/districts'
+const districtId = 'https://data.nepalcorona.info/api/v1/districts/'
 
-const fetchData = async() =>{
+
+ const fetchData = async() =>{
 
     try{
         const { data : {tested_positive , tested_negative ,tested_total , in_isolation , quarantined , tested_rdt , recovered , deaths  }} = await axios.get(url)
@@ -22,7 +22,7 @@ const fetchData = async() =>{
 
         }
         
-        console.log(modData)
+      //  return(modData)
 
     }
     catch(error){
@@ -34,20 +34,32 @@ const fetchData = async() =>{
 
 }
 
-//fetchData();
 
-const fetchDailyData = async() =>{
+ const fetchDailyData = async() =>{
 
     try{
+        const dataa = []
         const { data  } = await axios.get(dailyUrl)
-        const modData =data.map(daily =>({
+       // data.splice(-1,1)
+        data.splice(-1,1)
+
+        let modData =data.map(daily =>({
             cases: daily.totalCases,
             recovery:daily.totalRecoveries,
             deaths:daily.totalDeaths,
             date: daily.date,
+            newCases: daily.newCases,
+            newRecovery: daily.newRecoveries,
+            newDeaths: daily.newDeaths,
+
         }))
+
         
-            console.log(modData)
+       
+
+        
+        //return(modData)
+
     }
     catch(error){
         console.log(error)
@@ -56,12 +68,11 @@ const fetchDailyData = async() =>{
    
 }
 
-//fetchDailyData();
 
  const fetchDistrictData = async() =>{
 
     try{
-        const { data  } = await axios.get(districtUrl)
+        const { data  } = await axios.get(district)
         const modData =data.map(daily =>({
            district: daily.title,
            id: daily.id
@@ -94,7 +105,7 @@ const fetchDailyData = async() =>{
        modData.forEach( async function (arrayItem) {
                  var id = arrayItem.id;
                  var district = arrayItem.district;
-                 const { data  } = await axios.get(districtIdUrl + id)
+                 const { data  } = await axios.get(districtId + id)
                  var cases = data.covid_cases.length;
                  
                  var newObj = {
@@ -110,7 +121,7 @@ const fetchDailyData = async() =>{
 
 
 
-        return obj;
+     //   return obj;
         
    // console.log( modData )
     }
@@ -121,102 +132,14 @@ const fetchDailyData = async() =>{
    
 }
 
-
-
-// const fetchparticularDistrictData =(dataa) =>{
-
-//     try{
-//         let obj = []
-                
-//           dataa.forEach( async function (arrayItem) {
-//                     var id = arrayItem.id;
-//                     var district = arrayItem.district;
-//                     const { data  } = await axios.get(districtId + id)
-//                     var cases = data.covid_cases.length;
-                    
-//                     var newObj = {
-//                         district : district,
-//                         cases : cases
-//                     }
-                    
-//                     obj.push(newObj)
-//                     if(obj.length === 77){
-//                        return 
-//                     }
-                    
-//                     //console.log('shah')
-//                 });
-
-
-           //     console.log(addd)
-              
-                
-
-     //   return obj
-    
-
-    
-
-           
-
-
-
-
-
-       
-
-
-        //setTimeout(function(){ console.log(obj) }, 5000);
-
-
-        
-       
-    
-     //   const idd = dataa.find(element =>element.district ===)
-       // const { data  } = await axios.get(districtId + idd.id)
-        // const modData =data.map(daily =>({
-        //    district: daily.title,=
-        //    id: daily._id
-        // }))
-        // function compare(a, b) {
-        //     // Use toUpperCase() to ignore character casing
-        //     const bandA = a.district.toUpperCase();
-        //     const bandB = b.district.toUpperCase();
-          
-        //     let comparison = 0;
-        //     if (bandA > bandB) {
-        //       comparison = 1;
-        //     } else if (bandA < bandB) {
-        //       comparison = -1;
-        //     }
-        //     return comparison;
-        //   }
-          
-        //   modData.sort(compare);
-
-       //   districtId(modData);
-
-
-      // const idd = modData.map(id => id.id)
-
-        
-      //  console.log( data.covid_cases.length )
-//     }
-//     catch(error){
-//         console.log(error)
-//     }
-    
-   
-// }
-
-const fetchPateintsData = async() =>{
+ const fetchTableData = async() =>{
 
     try{
         const district = []
         const province = []
    
 
-            const dataD  = await axios.get(districtUrl);
+            const dataD  = await axios.get('https://data.nepalcorona.info/api/v1/districts');
             
             const disData = dataD.data.map(daily =>({
                 district: daily.title,
@@ -244,8 +167,9 @@ const fetchPateintsData = async() =>{
             disData.forEach(prov => province.push(prov.province));
 
             const { data  } = await axios.get('https://data.nepalcorona.info/api/v1/covid/summary')
-
+            //console.log(disData)
             let arr2=[]
+            let arr3=[]
             for(let k = 1 ; k <=7 ; k++){
   
               let name = disData.filter( dat => dat.province === k )
@@ -299,7 +223,7 @@ const fetchPateintsData = async() =>{
                   }
               })
              // console.log(name)
-              arr2.push(name);
+              arr2 = arr2.concat(name);
               
             }
           console.log(arr2.length)
@@ -313,7 +237,7 @@ const fetchPateintsData = async() =>{
             let deaths = 0
 
 
-            for( let i = 1 ; i< 7 ; i++){
+            for( let i = 1 ; i<= 7 ; i++){
             
             let province = i;
 
@@ -361,7 +285,7 @@ const fetchPateintsData = async() =>{
 
 
             }
-            console.log(arr); 
+         //  return (arr); 
 
         
         
@@ -381,7 +305,11 @@ const fetchPateintsData = async() =>{
    
 }
 
-fetchPateintsData();
+
+fetchTableData();
+
+
+
 
 
 

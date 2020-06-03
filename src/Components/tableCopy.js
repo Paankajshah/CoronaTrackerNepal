@@ -29,21 +29,6 @@ export class TableCopy extends Component {
   }
 
   
-
-  createData = (name, calories, fat, carbs, protein, price) => {
-        return {
-          name,
-          calories,
-          fat,
-          carbs,
-          protein,
-          price,
-          history: [
-            { date: '2020-01-05', customerId: '11091700', amount: 3 },
-            { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
-          ],
-        };
-      }
     render() {
 
       const { info } = this.props;
@@ -51,21 +36,11 @@ export class TableCopy extends Component {
      console.log(info)
 
         
-const rows = [
-
-    
-    this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    this.createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    this.createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    this.createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-  ];
 
   const rowData = info ? (<TableBody>{info.map((row) => (
     <Row key={row.province} row={row} />
   ))}</TableBody>) : null
 
-  console.log(rows)
         return (
             <TableContainer component={Paper} style={{marginTop:'30px'}}>
             <Table aria-label="collapsible table">

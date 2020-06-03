@@ -3,7 +3,7 @@ import { fetchData , fetchDistrictData , fetchTableData , fetchDailyData } from 
 import Cards from './Components/Cards/Cards';
 import Table from './Components/table'
 import Chart from './Components/Charts/Chart'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import DistrictTable from './Components/table'
 import TableCopy from './Components/tableCopy'
 class App extends Component {
 
@@ -48,6 +48,7 @@ class App extends Component {
        data ={data}
        newData={newData} 
        />
+       <DistrictTable />
 
       <TableCopy 
        info ={tableData} />

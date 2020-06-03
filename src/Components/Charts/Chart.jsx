@@ -13,6 +13,8 @@ class Chart extends Component{
     
   async componentWillMount(){
     const data = await fetchDailyData();
+    data.splice(-1,1)
+
 
     this.setState({
        data : data

@@ -73,10 +73,10 @@ const rows = [
                 <TableRow>
                   <TableCell />
                   <TableCell>Province</TableCell>
-                  <TableCell align="right">Confirmed</TableCell>
-                  <TableCell align="right">Active</TableCell>
-                  <TableCell align="right">Recovered</TableCell>
-                  <TableCell align="right">Deaths</TableCell>
+                  <TableCell align="right" style={{color:'red'}}>Confirmed</TableCell>
+                  <TableCell align="right" style={{color:'blue'}}>Active</TableCell>
+                  <TableCell align="right" style={{color:'green'}}>Recovered</TableCell>
+                  <TableCell align="right" style={{color:'grey'}}>Deaths</TableCell>
                 </TableRow>
               </TableHead>
               {rowData}

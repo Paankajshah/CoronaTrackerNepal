@@ -5,11 +5,11 @@ import CountUp from 'react-countup';
 import SingleChart from '../Charts/SingleChart'
 import classes from 'classnames'
 
-const card = ({data : {tested_positive , recovered , deaths , in_isolation}}) =>{
+const card = ({data : {tested_positive , recovered , deaths , in_isolation}, newData : {newCases ,newDeaths , newRecovery}}) =>{
 
   
 
-    console.log(tested_positive , recovered , deaths, in_isolation)
+    console.log('newData    ' , newCases)
 
     if(!tested_positive ){
         return <div style={{textAlign:'center'}}>
@@ -25,6 +25,15 @@ const card = ({data : {tested_positive , recovered , deaths , in_isolation}}) =>
                   color="textSecondary" 
                   style={{color: 'red' }}>
                    Confirmed 
+                </Typography>
+                <Typography  
+                  variant="body1" 
+                  style={{color: 'red'}} > [ +
+                <CountUp 
+                        start={0}
+                        end={newCases}
+                        duration={2.5}
+                        separator=','  /> ]
                 </Typography>
                 <Typography  
                   variant="h5" 
@@ -51,6 +60,15 @@ const card = ({data : {tested_positive , recovered , deaths , in_isolation}}) =>
                 color="textSecondary"
                 style={{color: 'green'}} >
                    Recovered 
+                </Typography>
+                <Typography  
+                  variant="body1" 
+                  style={{color: 'green'}} > [ +
+                <CountUp 
+                        start={0}
+                        end={newRecovery}
+                        duration={2.5}
+                        separator=','  /> ]
                 </Typography>
                 <Typography  
                   variant="h5" 
@@ -100,6 +118,16 @@ const card = ({data : {tested_positive , recovered , deaths , in_isolation}}) =>
             style={{color: 'grey'}}  >
                    Deaths 
                 </Typography>
+                <Typography  
+                  variant="body1" 
+                  style={{color: 'grey'}} > [ +
+                <CountUp 
+                        start={0}
+                        end={newDeaths}
+                        duration={2.5}
+                        separator=','  /> ]
+                </Typography>
+
                 <Typography 
                      variant="h5" 
                      component="h2"

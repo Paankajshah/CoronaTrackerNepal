@@ -39,8 +39,9 @@ export const fetchData = async() =>{
 export const fetchDailyData = async() =>{
 
     try{
+        const dataa = []
         const { data  } = await axios.get(dailyUrl)
-        data.splice(-1,1)
+       // data.splice(-1,1)
         data.splice(-1,1)
 
         let modData =data.map(daily =>({
@@ -48,10 +49,15 @@ export const fetchDailyData = async() =>{
             recovery:daily.totalRecoveries,
             deaths:daily.totalDeaths,
             date: daily.date,
+            newCases: daily.newCases,
+            newRecovery: daily.newRecoveries,
+            newDeaths: daily.newDeaths,
+
         }))
+
+        
        
 
-        console.log('fetchData ' , modData)
         
         return(modData)
 

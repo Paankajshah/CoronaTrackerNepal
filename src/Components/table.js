@@ -168,7 +168,11 @@ class DistrictTable extends React.Component {
       <MuiThemeProvider theme={this.getMuiTheme()}>
     <div style={{marginTop:'30px'}}>
       <MUIDataTable
+<<<<<<< HEAD
         title={"Infected Districts "}
+=======
+        title={"District Wise Data"}
+>>>>>>> cd6c7b6eff60fda62d7e9ecbfebee247941e7c40
         data={data}
         columns={columns}
         options={options}

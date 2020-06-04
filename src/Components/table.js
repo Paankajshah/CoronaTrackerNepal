@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MUIDataTable from "mui-datatables";
 import { fetchTableData} from '../api/TableData'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { Collapse } from "@material-ui/core";
 
 class DistrictTable extends React.Component {
 
@@ -25,6 +27,16 @@ class DistrictTable extends React.Component {
 
 
   }
+
+
+  getMuiTheme = () => createMuiTheme({
+    overrides: {
+      MUIDataTableBodyCell: {
+
+      }
+      }
+    }
+  )
   render()
   
   
@@ -39,13 +51,39 @@ class DistrictTable extends React.Component {
        options: {
         filter: true,
         sort: true,
-       } },
+        setCellHeaderProps: (value) => {
+
+        return {
+            style: {
+              textDecoration: 'underline',
+              color: 'black',
+              fontWeight:'bold'
+            }
+        };
+      }
+        
+      }},
       {
        name: "cases",
        label: "Cases",
        options: {
         filter: true,
         sort: true,
+        sortDirection: 'desc',
+
+        
+        setCellHeaderProps: (value) => {
+
+          return {
+              style: {
+                textDecoration: 'underline',
+                color: 'red',
+                fontWeight:'bold'
+              },
+
+          };
+        },
+        
        } }
       ,
       {
@@ -54,6 +92,16 @@ class DistrictTable extends React.Component {
        options: {
         filter: true,
         sort: true,
+        setCellHeaderProps: (value) => {
+
+          return {
+              style: {
+                textDecoration: 'underline',
+                color: 'blue',
+                fontWeight:'bold'
+              }
+          };
+        }
        } } ,
       {
        name: "recover",
@@ -61,6 +109,16 @@ class DistrictTable extends React.Component {
        options: {
         filter: true,
         sort: true,
+        setCellHeaderProps: (value) => {
+
+          return {
+              style: {
+                textDecoration: 'underline',
+                color: 'green',
+                fontWeight:'bold'
+              }
+          };
+        }
        }  } ,
        {
         name: "deaths",
@@ -68,6 +126,16 @@ class DistrictTable extends React.Component {
         options: {
          filter: true,
          sort: true,
+         setCellHeaderProps: (value) => {
+
+          return {
+              style: {
+                textDecoration: 'underline',
+                color: 'grey',
+                fontWeight:'bold'
+              }
+          };
+        }
         } }]
      
      const data = tableData.map( (dist) => ({
@@ -94,18 +162,19 @@ class DistrictTable extends React.Component {
       print: false,
       viewColumns: false,
       selectableRows: false ,
-      pagination: false
       
      };
     return (
+      <MuiThemeProvider theme={this.getMuiTheme()}>
     <div style={{marginTop:'30px'}}>
       <MUIDataTable
-        title={"ACME Employee list"}
+        title={"Infected Districts "}
         data={data}
         columns={columns}
         options={options}
       />
       </div>
+      </MuiThemeProvider>
     );
   }
 }

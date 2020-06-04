@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { fetchData , fetchDistrictData , fetchTableData , fetchDailyData } from './api/index'
 import Cards from './Components/Cards/Cards';
 import Table from './Components/table'
+import classes from 'classnames'
+
+import styles from './App.css'
 import Chart from './Components/Charts/Chart'
 import DistrictTable from './Components/table'
 import TableCopy from './Components/tableCopy'
@@ -44,21 +47,32 @@ class App extends Component {
   }  = this.state;
 
     const spinner = data.length!==0 && tableData ? (<div>
+      <div>
       <Cards 
        data ={data}
        newData={newData} 
        />
-       <DistrictTable />
 
+       </div>
+
+       <div>
+       <DistrictTable />
+        </div>
+
+        <div>
       <TableCopy 
        info ={tableData} />
 
+       </div>
+
+       <div >
+
        <Chart />
-     
+     </div>
     </div>): <div> <h1>Loading......</h1></div>
 
     return(
-      <div>
+      <div  className={classes.container}>
 
       {spinner}
       </div>
